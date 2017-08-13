@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const request = require('request')
 const app = express()
 const port = process.argv[2] || process.env.PORT || 4000
 const Block = require('./block')
@@ -17,8 +18,8 @@ blockchain.push(createGenesisBlock())
 
 app.post('/transaction', (req, res) => {
   const nt = req.body
-  ourTransactions.push(JSON.parse(nt))
-  console.log(`
+  ourTransactions.push(nt)
+  res.send(`
     New transaction:
     FROM: ${nt.from}
     TO: ${nt.to}
@@ -62,10 +63,13 @@ app.get('/mine', (req, res) => {
 const findNewChains = () => {
   let otherChains = []
   peerNodes.forEach((node) => {
-    // Get their chains using a GET request
-    // block = requests.get(node + "/blocks").content
-    const block = {}
-    otherChains.push(JSON.parse(block))
+    request({ uri: `${node}/blocks` }, (err, res, body) => {
+      if (err) {
+        console.warn(err)
+        return
+      }
+      otherChains.push(JSON.parse(body))
+    })
   })
   return otherChains
 }
