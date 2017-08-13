@@ -1,49 +1,22 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-app.use(bodyParser.json())
 const crypto = require('crypto')
 const getHash = (s) => crypto.createHash('sha256').update(s).digest('hex')
+const port = process.argv[2] || process.env.PORT || 4000
+const Block = require('./block')
+const { createGenesisBlock, createNextBlock } = require('./create')
 
-class Block {
-  constructor (index, timestamp, data, previousHash) {
-    this.index = index
-    this.timestamp = new Date()
-    this.data = data
-    this.previousHash = previousHash
-    this.hash = this.generateHash()
-  }
+app.use(bodyParser.json())
 
-  generateHash() {
-    const { index, timestamp, data, previousHash } = this
-    return getHash(`${index}${timestamp}${data}${previousHash}`)
-  }
-}
-
-const createGenesisBlock = () => new Block(
-  0,
-  new Date(),
-  {
-    proofOfWork: 9,
-    transactions: null
-  },
-  '0'
-)
+let blockchain = []
+let ourTransactions = []
+let peerNodes = []
+let mining = true
 
 const minerAddress = 'q3nf394hjg-random-miner-address-34nf3i4nflkn3oi'
 
-const createNextBlock = (previousBlock, data = null) => {
-  const index = previousBlock.index + 1
-  const previousHash = previousBlock.hash
-  return new Block(index, data, previousHash)
-}
-
-let blockchain = []
 blockchain.push(createGenesisBlock())
-
-let ourTransactions = []
-const peerNodes = []
-let mining = true
 
 app.post('/transaction', (req, res) => {
   const nt = req.body
@@ -107,3 +80,7 @@ const proofOfWork = (lastProof) => {
   }
   return incrementor
 }
+
+app.listen(port, () => {
+  console.log(`listening on ${port}`)
+})
