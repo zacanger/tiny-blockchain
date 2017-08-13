@@ -1,0 +1,16 @@
+{
+  "name": "snakecoin-full",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Zac Anger <zac@zacanger.com> (http://zacanger.com)",
+  "license": "WTFPL",
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "express": "4.15.4"
+  }
+}
