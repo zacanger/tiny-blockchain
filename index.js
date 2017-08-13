@@ -4,6 +4,7 @@ const app = express()
 const port = process.argv[2] || process.env.PORT || 4000
 const Block = require('./block')
 const { createGenesisBlock, createNextBlock } = require('./create')
+const minerAddress = require('./address')
 
 app.use(bodyParser.json())
 
@@ -11,8 +12,6 @@ let blockchain = []
 let ourTransactions = []
 let peerNodes = []
 let mining = true
-
-const minerAddress = 'q3nf394hjg-random-miner-address-34nf3i4nflkn3oi'
 
 blockchain.push(createGenesisBlock())
 
