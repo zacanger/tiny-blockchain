@@ -1,8 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const crypto = require('crypto')
-const getHash = (s) => crypto.createHash('sha256').update(s).digest('hex')
 const port = process.argv[2] || process.env.PORT || 4000
 const Block = require('./block')
 const { createGenesisBlock, createNextBlock } = require('./create')
