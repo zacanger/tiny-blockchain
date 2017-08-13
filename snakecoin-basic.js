@@ -13,7 +13,8 @@ class Block {
   }
 
   generateHash() {
-    return getHash(`${this.index}${this.timestamp}${this.data}${this.previousHash}`);
+    const { index, timestamp, data, previousHash } = this
+    return getHash(`${index}${timestamp}${data}${previousHash}`)
   }
 }
 
@@ -25,7 +26,7 @@ const createNextBlock = (previousBlock, data = null) => {
   return new Block(index, data, previousHash)
 }
 
-const demo = (n = 10) => {
+const demo = (n) => {
   const blockchain = [ createGenesisBlock() ]
   let previousBlock = blockchain[0]
 
@@ -41,4 +42,4 @@ Hash: ${block.hash}`
   })
 }
 
-demo(parseInt(process.argv[2], 10))
+demo(parseInt(process.argv[2] || 10, 10))
