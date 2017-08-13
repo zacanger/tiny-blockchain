@@ -1,5 +1,9 @@
 // port of https://gist.github.com/aunyks/47d157f8bc7d1829a729c2a6a919c173 to js
 
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+app.use(bodyParser.json())
 const crypto = require('crypto')
 const getHash = (s) => crypto.createHash('sha256').update(s).digest('hex')
 
@@ -31,6 +35,30 @@ const createNextBlock = (previousBlock, data = null) => {
   return new Block(index, data, previousHash)
 }
 
+let blockchain = []
+blockchain.push(createGenesisBlock())
+
+const ourTransactions = []
+const peerNodes = []
+let mining = true
+
+app.post('/transaction', (req, res) => {
+  const nt = req.body
+  ourTransactions.push(JSON.parse(nt))
+  console.log(`
+    New transaction:
+    FROM: ${nt.from}
+    TO: ${nt.to}
+    AMOUNT: ${nt.amount}
+    Submission successful
+  `)
+})
+
+app.get('/blocks', (req, res) => {
+  const chainToSend = {}
+  res.json(chainToSend)
+})
+/*
 const demo = (n) => {
   const blockchain = [ createGenesisBlock() ]
   let previousBlock = blockchain[0]
@@ -46,3 +74,4 @@ Hash: ${block.hash}`
     )
   })
 }
+*/

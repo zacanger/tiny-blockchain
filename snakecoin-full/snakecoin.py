@@ -61,6 +61,7 @@ def transaction():
   # Then we let the client know it worked out
   return "Transaction submission successful\n"
 
+@node.route('/blocks', methods=['GET'])
 def get_blocks():
   chain_to_send = blockchain
   # Convert our blocks into dictionaries
