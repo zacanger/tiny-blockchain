@@ -1,14 +1,13 @@
 {
   "name": "snakecoin-full",
   "version": "0.0.1",
-  "description": "",
+  "author": "Zac Anger <zac@zacanger.com> (http://zacanger.com)",
+  "license": "WTFPL",
   "main": "index.js",
   "scripts": {
     "test:lint": "eslint ."
   },
   "keywords": [],
-  "author": "Zac Anger <zac@zacanger.com> (http://zacanger.com)",
-  "license": "WTFPL",
   "dependencies": {
     "body-parser": "1.17.2",
     "express": "4.15.4",
@@ -24,5 +23,6 @@
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "3.0.1",
     "eslint-plugin-unicorn": "2.1.2"
-  }
+  },
+  "private": true
 }
