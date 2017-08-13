@@ -60,6 +60,17 @@ app.get('/mine', (req, res) => {
   })
 })
 
+const findNewChains = () => {
+  let otherChains = []
+  peerNodes.forEach((node) => {
+    // Get their chains using a GET request
+    // block = requests.get(node + "/blocks").content
+    const block = {}
+    otherChains.push(JSON.parse(block))
+  })
+  return otherChains
+}
+
 const consensus = () => {
   let otherChains = findNewChains()
   let longestChain = blockchain
@@ -78,6 +89,24 @@ const proofOfWork = (lastProof) => {
   }
   return incrementor
 }
+
+app.get('/blocks', (req, res) => {
+  let chainToSend = blockchain
+  Array(chainToSend.length).fill().forEach((_, i) => {
+    let block = chainToSend[i]
+    let blockIndex = block.index
+    let blockTimestamp = block.timestamp
+    let blockData = block.data
+    let blockHash = block.hash
+    chainToSend[i] = {
+      index: blockIndex,
+      timestamp: blockTimestamp,
+      data: blockData,
+      hash: blockHash
+    }
+  })
+  res.json(chainToSend)
+})
 
 app.listen(port, () => {
   console.log(`listening on ${port}`)
