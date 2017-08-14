@@ -7,6 +7,5 @@ I'm working on this to learn more about what a blockchain even is.
 Try `curl localhost:4000/transaction -H "Content-Type: application/json" -d '{"from": "akjflw", "to":"fjlakdj", "amount": 3}'`
 
 And also `curl /mine` and `curl /blocks`
-Very much a work in progress.
 
 License: [WTFPL](./LICENSE.md)
