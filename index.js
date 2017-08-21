@@ -94,6 +94,7 @@ const proofOfWork = (lastProof) => {
 }
 
 app.get('/blocks', (req, res) => {
+  consensus() // i think this goes here?
   let chainToSend = blockchain
   Array(chainToSend.length).fill().forEach((_, i) => {
     let block = chainToSend[i]
