@@ -8,4 +8,4 @@ Try `curl localhost:4000/transaction -H "Content-Type: application/json" -d '{"f
 
 And also `curl /mine` and `curl /blocks`
 
-License: [WTFPL](./LICENSE.md)
+License: [MIT](./LICENSE.md)
