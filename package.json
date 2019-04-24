@@ -2,7 +2,7 @@
   "name": "snakecoin-full",
   "version": "0.0.1",
   "author": "Zac Anger <zac@zacanger.com> (http://zacanger.com)",
-  "license": "WTFPL",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test:lint": "eslint ."
