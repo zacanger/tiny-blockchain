@@ -9,12 +9,12 @@
   },
   "keywords": [],
   "dependencies": {
-    "body-parser": "1.20.0",
-    "express": "4.18.1",
+    "body-parser": "1.20.1",
+    "express": "4.18.2",
     "request": "2.88.0"
   },
   "devDependencies": {
-    "sortpack": "2.2.4",
+    "sortpack": "2.3.2",
     "standard": "^17.0.0"
   },
   "private": true
