@@ -1,3 +1,7 @@
+Now archived. No updates are needed here, and also the blockchain still has no
+real-world use cases in which it actually outperforms any traditional
+technology (which is to say, I'm anti-blockchain).
+
 This is a port of
 [snakecoin](https://gist.github.com/aunyks/47d157f8bc7d1829a729c2a6a919c173) to
 JS. All credit to [@aunyks](https://github.com/aunyks) who wrote the original.
